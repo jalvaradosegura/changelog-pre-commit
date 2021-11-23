@@ -8,3 +8,8 @@ app = typer.Typer()
 @app.command()
 def main(files: List[str]):
     typer.echo(f"Files about to be analyzed: {files}")
+
+
+def run():
+    """Run commands."""
+    app()
