@@ -1,4 +1,22 @@
-[![Coverage Status](https://coveralls.io/repos/github/jalvaradosegura/changelog-pre-commit/badge.svg?branch=main)](https://coveralls.io/github/jalvaradosegura/changelog-pre-commit?branch=main)
+<p align="center">
+<a href='https://coveralls.io/github/jalvaradosegura/changelog-pre-commit?branch=main'>
+  <img src='https://coveralls.io/repos/github/jalvaradosegura/changelog-pre-commit/badge.svg?branch=main' alt='Coverage Status' />
+</a>
+<a href="https://github.com/psf/black" target="_blank">
+  <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="black">
+</a>
+<a href="https://pycqa.github.io/isort/" target="_blank">
+  <img src="https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336" alt="isort">
+</a>
+<a href="https://github.com/jalvaradosegura/changelog-pre-commit/blob/main/LICENSE">
+  <img alt="GitHub license" src="https://img.shields.io/github/license/jalvaradosegura/changelog-pre-commit">
+</a>
+<a href="https://github.com/jalvaradosegura/changelog-pre-commit/actions/workflows/code_quality.yml" target="_blank">
+    <img src="https://github.com/jalvaradosegura/changelog-pre-commit/actions/workflows/code_quality.yml/badge.svg" alt="Test">
+</a>
+</p>
+
+
 # 🪝 changelog-pre-commit
 A pre-commit hook so you don't ever again forget to update your changelog file, when doing push/commits
 
@@ -19,7 +37,7 @@ pip install pre-commit
 ```yaml
 repos:
 - repo: https://github.com/jalvaradosegura/changelog-pre-commit
-  rev: 31ff41aebd86de96c396e815a9f6835516cf1869
+  rev: v0.1.0-alpha
   hooks:
   - id: changelog_pre_commit
 
@@ -29,7 +47,7 @@ repos:
 ```yaml
 repos:
 - repo: https://github.com/jalvaradosegura/changelog-pre-commit
-  rev: 31ff41aebd86de96c396e815a9f6835516cf1869
+  rev: v0.1.0-alpha
   hooks:
   - id: changelog_pre_commit
     stages: [push]
