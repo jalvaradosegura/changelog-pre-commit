@@ -1,9 +1,11 @@
 from unittest.mock import patch
 
+import pytest
 from typer.testing import CliRunner
 
 from changelog_pre_commit import __version__
 from changelog_pre_commit.core import app, run
+from changelog_pre_commit.utils import contains_changelog_file
 
 
 runner = CliRunner()
@@ -22,3 +24,30 @@ def test_main():
 @patch("changelog_pre_commit.core.app", lambda: "I was mocked")
 def test_run():
     run()
+
+
+@pytest.mark.parametrize(
+    "files",
+    [
+        ["a.py", "b.rb"],
+        ["a.py", "b.rb", "log"],
+    ],
+)
+def test_check_for_changelog_file_and_there_is_no_changelog(files):
+    result = contains_changelog_file(files)
+    assert result is False
+
+
+@pytest.mark.parametrize(
+    "files",
+    [
+        ["a.py", "b.rb", "changelog"],
+        ["a.py", "Changelog.md", "log"],
+        ["a.py", "CHANGELOG.MD", "log"],
+        ["a.py", "CHANGELOG.md", "log"],
+        ["a.py", "b.js", "hi_changelog.py"],
+    ],
+)
+def test_check_for_changelog_file_and_there_is_a_changelog(files):
+    result = contains_changelog_file(files)
+    assert result is True
