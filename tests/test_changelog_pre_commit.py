@@ -8,7 +8,6 @@ from changelog_pre_commit.core import app, run
 from changelog_pre_commit.services import changelog_modifications
 from changelog_pre_commit.utils import contains_changelog_file
 
-
 runner = CliRunner()
 
 
@@ -33,13 +32,7 @@ def test_run():
     run()
 
 
-@pytest.mark.parametrize(
-    "files",
-    [
-        ["a.py", "b.rb"],
-        ["a.py", "b.rb", "log"],
-    ],
-)
+@pytest.mark.parametrize("files", [["a.py", "b.rb"], ["a.py", "b.rb", "log"]])
 def test_check_for_changelog_file_and_there_is_no_changelog(files):
     result = contains_changelog_file(files)
     assert result is False
@@ -60,13 +53,7 @@ def test_check_for_changelog_file_and_there_is_a_changelog(files):
     assert result is True
 
 
-@pytest.mark.parametrize(
-    "files",
-    [
-        ["a.py", "b.rb"],
-        ["a.py", "b.rb", "log"],
-    ],
-)
+@pytest.mark.parametrize("files", [["a.py", "b.rb"], ["a.py", "b.rb", "log"]])
 def test_changelog_modifications(files):
     with pytest.raises(Exception) as exc_info:
         changelog_modifications(files)
