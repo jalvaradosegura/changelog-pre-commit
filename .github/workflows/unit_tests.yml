@@ -10,6 +10,6 @@ jobs:
       - name: Install dependencies
         run: poetry install
       - name: Run tests
-        run: poetry run python -m pytest --cov=changelog_pre_commit tests --cov-report xml
+        run: poetry run python -m pytest --cov=changelog_pre_commit tests --cov-report=term-missing --cov-report xml
       - name: Upload coverage
         uses: codecov/codecov-action@v1
