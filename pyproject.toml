@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "changelog-pre-commit"
-version = "0.1.0"
+version = "0.2.0"
 description = "Don't you ever forget to update your Changelog when doing a push/commit"
 authors = ["Jorge Alvarado <alvaradosegurajorge@gmail.com>"]
 readme = "README.md"

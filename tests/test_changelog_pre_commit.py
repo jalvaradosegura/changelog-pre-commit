@@ -12,7 +12,7 @@ runner = CliRunner()
 
 
 def test_version():
-    assert __version__ == "0.1.0"
+    assert __version__ == "0.2.0"
 
 
 def test_main_exit_0():
@@ -55,6 +55,7 @@ def test_check_for_changelog_file_and_there_is_a_changelog(files):
 
 @pytest.mark.parametrize("files", [["a.py", "b.rb"], ["a.py", "b.rb", "log"]])
 def test_changelog_modifications(files):
-    with pytest.raises(Exception) as exc_info:
+    with pytest.raises(SystemExit) as exc_info:
         changelog_modifications(files)
-    assert "You didn't modify the changelog file" in str(exc_info.value)
+    assert exc_info.type == SystemExit
+    assert exc_info.value.code == 1
