@@ -1,5 +1,5 @@
 - id: changelog_pre_commit
-  name: main
+  name: changelog_pre_commit
   description: Calling main function
   entry: main
   language: python
