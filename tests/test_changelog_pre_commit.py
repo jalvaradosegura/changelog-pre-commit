@@ -12,7 +12,7 @@ runner = CliRunner()
 
 
 def test_version():
-    assert __version__ == "0.2.0"
+    assert __version__ == "0.3.0"
 
 
 def test_main_exit_0():
@@ -32,24 +32,35 @@ def test_run():
     run()
 
 
-@pytest.mark.parametrize("files", [["a.py", "b.rb"], ["a.py", "b.rb", "log"]])
-def test_check_for_changelog_file_and_there_is_no_changelog(files):
-    result = contains_changelog_file(files)
+@pytest.mark.parametrize(
+    "files, changelog_name",
+    [
+        (["a.py", "b.rb"], "changelog"),
+        (["a.py", "b.rb", "log"], "changelog"),
+        (["a.py", "changelog", "log"], "here_are_my_changes"),
+    ],
+)
+def test_check_for_changelog_file_and_there_is_no_changelog(
+    files, changelog_name
+):
+    result = contains_changelog_file(files, changelog_name)
     assert result is False
 
 
 @pytest.mark.parametrize(
-    "files",
+    "files, changelog_name",
     [
-        ["a.py", "b.rb", "changelog"],
-        ["a.py", "Changelog.md", "log"],
-        ["a.py", "CHANGELOG.MD", "log"],
-        ["a.py", "CHANGELOG.md", "log"],
-        ["a.py", "b.js", "hi_changelog.py"],
+        (["a.py", "b.rb", "changelog"], "changelog"),
+        (["a.py", "Changelog.md", "log"], "changelog"),
+        (["a.py", "CHANGELOG.MD", "log"], "changelog"),
+        (["a.py", "my_changes.md", "log"], "my_changes"),
+        (["a.py", "b.js", "hi_changelog.py"], "changelog"),
     ],
 )
-def test_check_for_changelog_file_and_there_is_a_changelog(files):
-    result = contains_changelog_file(files)
+def test_check_for_changelog_file_and_there_is_a_changelog(
+    files, changelog_name
+):
+    result = contains_changelog_file(files, changelog_name)
     assert result is True
 
 
